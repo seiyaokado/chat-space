@@ -5,16 +5,28 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false|
-|emaiil|integer|null: false|
+|emaiil|string|null: false|
+|encrypted_password|string|null: false|
+|nickname|string|null: false|
+|created_at|datetime|null: false|
+|updated_at|datetime|null: false|
 
-|group_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :member
+
+## tweetsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|id|integer|null: false|
+|text|string|null: false|
+|image|string|null: true|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
 
 ### Association
-- belongs_to :group
-- belongs_to :user
+- belongs_to :member
 
 ## membersテーブル
 
