@@ -11,6 +11,7 @@
 ### Association
 - belongs_to :member
 - belongs_to :group
+- belongs_to :message
 
 ## groupsテーブル
 
