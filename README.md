@@ -7,8 +7,8 @@
 |nickname|string|null: false|
 
 ### Association
-- has_many :message
-- has_many :member
+- has_many :messages
+- has_many :members
 
 
 ## messagesテーブル
@@ -30,8 +30,8 @@
 |groupname|string|null: false|
 
 ### Association
-- has_many :member
-- has_many :message
+- has_many :members
+- has_many :messages
 
 
 ## membersテーブル
