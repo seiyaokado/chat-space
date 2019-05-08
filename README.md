@@ -4,26 +4,33 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false|
-|emaiil|string|null: false|
+|emaiil|string|null: false, unique: true|
 |encrypted_password|string|null: false|
 |nickname|string|null: false|
-|created_at|datetime|null: false|
-|updated_at|datetime|null: false|
+
+### Association
+- belongs_to :member
+- belongs_to :group
+
+## groupsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|text|string||
+|groupname|string|null: false|
+|group|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :member
 
-## tweetsテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false|
-|text|string|null: false|
-|image|string|null: true|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
-
+|text|string||
+|image|string||
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :member
@@ -32,8 +39,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
