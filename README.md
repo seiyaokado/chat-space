@@ -9,7 +9,7 @@
 ### Association
 - has_many :messages
 - has_many :members
-
+- has_many :groups, through: :massages
 
 ## messagesテーブル
 |Column|Type|Options|
@@ -32,6 +32,7 @@
 ### Association
 - has_many :members
 - has_many :messages
+- has_many :users, through: :massages
 
 
 ## membersテーブル
