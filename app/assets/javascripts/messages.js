@@ -1,18 +1,18 @@
 $(function() {
   var buildMessageHTML = function(message) {
     var content = message.content ? `<p>${message.content}</p>` : "";
-    var image = message.image.url ? `<img class="main__group-message__image" src="${message.image.url}">` : "";
-    var groupNum = $('.main__group-messages').last().data('group');
-    var html = `<div class="main__group-messages" data-group="${groupNum}" data-id="${message.id}">
-                  <div class="main__group-up">
-                    <div class="main__group-member">
-                    ${message.user_name}
+    var image = message.image.url ? `<img class="lower-message__image" src="${message.image.url}">` : "";
+    var groupNum = $('.message').last().data('group');
+    var html = `<div class="message" data-group="${groupNum}" data-id="${message.id}">
+                  <div class="upper-message">
+                  <div class="mupper-message__user-name">
+                  ${message.user_name}
                     </div>
-                    <div class="main__group-date">
+                    <div class="upper-message__date">
                     ${message.created_at}
                     </div>
                   </div>
-                  <div class="main__group-message">
+                  <div lower-meesage">
                     ${content}
                     ${image}
                   </div>
@@ -37,7 +37,7 @@ $(function() {
       var html = buildMessageHTML(data);
       $('.main__group').append(html);
       $('form').get(0).reset();
-      var height = $('.main__group-messages').last().offset().top + $('.main__group').scrollTop();
+      var height = $('.message').last().offset().top + $('.main__group').scrollTop();
       $('.main__group').animate({
         scrollTop: height
         }, 300, 'swing'
@@ -52,8 +52,8 @@ $(function() {
   });
 
   var reloadMessages = function() {
-    last_message_id = $('.main__group-messages:last').data('id');
-    group_id = $('.main__group-messages').last().data('group');
+    last_message_id = $('.message:last').data('id');
+    group_id = $('.message').last().data('group');
     $.ajax({
       url: `/groups/${group_id}/api/messages`,
       type: 'get',
@@ -64,7 +64,7 @@ $(function() {
       messages.forEach(function(message){
         var html = buildMessageHTML(message);
         $('.main__group').append(html);
-        var height = $('.main__group-messages').last().offset().top + $('.main__group').scrollTop();
+        var height = $('.message').last().offset().top + $('.main__group').scrollTop();
         $('.main__group').animate({
           scrollTop: height
           }, 300, 'swing'
