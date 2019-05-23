@@ -19,7 +19,6 @@ $(function() {
                 </div>`
     return html;
   }
-
   $('.new_message').on('submit', function(e){
     e.preventDefault();
     var message = new FormData(this);
@@ -35,10 +34,10 @@ $(function() {
     })
     .done(function(data){
       var html = buildMessageHTML(data);
-      $('.main__group').append(html);
+      $('.messages').append(html);
       $('form').get(0).reset();
-      var height = $('.message').last().offset().top + $('.main__group').scrollTop();
-      $('.main__group').animate({
+      var height = $('.message').last().offset().top + $('.messages').scrollTop();
+      $('.messages').animate({
         scrollTop: height
         }, 300, 'swing'
       );
@@ -47,7 +46,7 @@ $(function() {
       alert("メッセージ送信は出来ませんでした");
     })
     .always(function(data){
-      $('.main__form__submit').prop('disabled', false);
+      $('.form__submit').prop('disabled', false);
     });
   });
 
@@ -63,9 +62,9 @@ $(function() {
     .done(function(messages) {
       messages.forEach(function(message){
         var html = buildMessageHTML(message);
-        $('.main__group').append(html);
-        var height = $('.message').last().offset().top + $('.main__group').scrollTop();
-        $('.main__group').animate({
+        $('.chat').append(html);
+        var height = $('.message').last().offset().top + $('.chat').scrollTop();
+        $('.chat').animate({
           scrollTop: height
           }, 300, 'swing'
         );
@@ -75,8 +74,8 @@ $(function() {
     });
   }
 
-  reg = new RegExp('groups\/\\d\/messages');
-  if (location.href.match(reg)) {
-    setInterval(reloadMessages, 5000);
-  }
+  // reg = new RegExp('groups\/\\d\/messages');
+  // if (location.href.match(reg)) {
+  //   setInterval(reloadMessages, 5000);
+  // }
 });
