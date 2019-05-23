@@ -73,9 +73,4 @@ $(function() {
     .fail(function() {
     });
   }
-
-  // reg = new RegExp('groups\/\\d\/messages');
-  // if (location.href.match(reg)) {
-  //   setInterval(reloadMessages, 5000);
-  // }
 });
