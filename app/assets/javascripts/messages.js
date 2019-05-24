@@ -5,8 +5,8 @@ $(function() {
     var groupNum = $('.message').last().data('group');
     var html = `<div class="message" data-group="${groupNum}" data-id="${message.id}">
                   <div class="upper-message">
-                  <div class="mupper-message__user-name">
-                  ${message.user_name}
+                    <div class="upper-message__user-name">
+                      ${message.user_name}
                     </div>
                     <div class="upper-message__date">
                     ${message.created_at}
@@ -62,9 +62,9 @@ $(function() {
     .done(function(messages) {
       messages.forEach(function(message){
         var html = buildMessageHTML(message);
-        $('.chat').append(html);
-        var height = $('.message').last().offset().top + $('.chat').scrollTop();
-        $('.chat').animate({
+        $('.messages').append(html);
+        var height = $('.messages').last().offset().top + $('.messages').scrollTop();
+        $('.messages').animate({
           scrollTop: height
           }, 300, 'swing'
         );
@@ -72,5 +72,10 @@ $(function() {
     })
     .fail(function() {
     });
+  }
+
+  reg = new RegExp('groups\/\\d\/messages');
+  if (location.href.match(reg)) {
+    setInterval(reloadMessages, 5000);
   }
 });
