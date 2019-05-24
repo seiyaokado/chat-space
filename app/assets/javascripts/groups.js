@@ -66,4 +66,22 @@ $(function() {
       alert('ユーザー検索に失敗しました');
     });
   });
+  
+  $(document).on("click", ".chat-group-user__btn--add", function(){
+    var name = $(this).siblings().text();
+    $.ajax({
+      type: 'GET',
+      url: '/users',
+      data: { keyword: name },
+      dataType: 'json',
+    })
+    .done(function(user){
+      appendUserToHTML(user);
+    });
+    $(this).parent().remove();
+  });
+
+  $(document).on("click", ".chat-group-user__btn--remove", function(){
+    $(this).parent().remove();
+  });
 });
